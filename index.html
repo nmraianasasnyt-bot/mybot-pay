@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://telegram.org"></script>
+    <title>Оплата подписки</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background: #f5f5f5; color: #333; }
+        .btn { background: #8b3ffd; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; max-width: 250px; margin-top: 15px; }
+        .info { font-size: 14px; color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Премиум доступ на 1 год</h2>
+    <p style="font-size: 24px; font-weight: bold; color: #8b3ffd;">100 ₽</p>
+    
+    <button class="btn" onclick="pay()">Оплатить через ЮMoney</button>
+    
+    <p class="info">После оплаты обязательно отправьте скриншот чека в чат с ботом!</p>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+
+        function pay() {
+            const wallet = "4100119595338953"; //
+            const amount = "100";
+            const userLabel = tg.initDataUnsafe.user.username || tg.initDataUnsafe.user.id; 
+            
+            const url = `https://yoomoney.ru{wallet}&quickpay-form=button&targets=Premium_1_Year&paymentType=SB&sum=${amount}&label=${userLabel}`;
+            
+            tg.openLink(url);
+        }
+    </script>
+</body>
+</html>
+
